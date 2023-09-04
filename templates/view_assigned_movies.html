@@ -1,0 +1,43 @@
+{% include "thead.html" %}
+<div class="row ps-3">
+    {% for screen in screens%}
+    {% set Schedules = get_schedule_by_assign_screen(screen[0])%}
+    {% for Schedule in Schedules: %}
+    {% set movies = get_movie_by_schedule(Schedule[2])%}
+    {% for movie in movies%}
+        <div class="col-md-4  mt-3">
+            <div class="card ps-3 p-3">
+                 <div class="row">
+                     <div class="col-md-6">
+                         {% set poster = retrieve_image_object_from_s3_bucket(movie[2]) %}
+                          <img src="{{poster}}" style="height:300px;width:100%;">
+                     </div>
+                     <div class="col-md-6">
+                         {% set poster = retrieve_image_object_from_s3_bucket(movie[3]) %}
+                           <div class="h4"><a href="{{poster}}" class="nav-link"> {{movie[1]}}</a><div class="" style="font-size:12px"> ({{Schedule[6]}})</div></div>
+                          <div class="h5 mt-4">{{movie[5]}}</div>
+                         <div class="h6">{{movie[4]}}</div>
+                         <div class="text-secondary" style="font-size:10px">From Date</div>
+                          <div class="h6" style="font-size:14px">{{Schedule[3]}}</div>
+                         <div class="text-secondary" style="font-size:10px">To Date</div>
+                          <div class="h6" style="font-size:14px">{{Schedule[3]}}</div>
+                           <div class="text-secondary" style="font-size:10px">Price</div>
+                          <div class="h6" style="font-size:15px">$ {{Schedule[5]}}</div>
+                         <div class="text-secondary" style="font-size:10px">Screen</div>
+                          <div class="h6" style="font-size:16px">{{screen[2]}}</div>
+                     </div>
+
+                 </div>
+                 <div class="card-body">
+                     <div></div>
+                </div>
+<!--                <div class="card-footer">-->
+<!--                    <a href="view_scheduled_Theaters_by_theater?movie_id={{movie['_id']}}&screen_id={{screen['_id']}}" class="btn btn-primary">View Bookings</a>-->
+<!--                </div>-->
+            </div>
+        </div>
+    {% endfor%}
+    {% endfor %}
+    {% endfor%}
+</div>
+

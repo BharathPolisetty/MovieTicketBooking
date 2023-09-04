@@ -1,0 +1,51 @@
+{% include "adminHome.html" %}
+<div class="container" xmlns="http://www.w3.org/1999/html">
+    <div class="row mt-3">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="card p-4 bg-secondary text-white">
+                <div class="text-center h4">Add Movie Cast</div>
+                <form action="addMovieCast1" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="movie_id" value={{movie_id}}>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Caste Title</label>
+                                <input type="text" class="form-control" name="caste_Title" placeholder="Enter Caste Title" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group ">
+                                <label class="form-label">Name</label>
+                                <input type="text" class="form-control" name="name" placeholder="Enter Name" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mt-2">
+                                <label class="form-label">Picture</label>
+                                <input type="file" class="form-control" name="picture" required>
+                            </div>
+                        </div>
+                         <div class="col-md-6">
+                            <div class="mb-3 mt-2">
+                                <label class="form-label">Age</label>
+                                <input type="text" class="form-control" name="Age" placeholder="Enter Age" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                    </div>
+                     <div class="mb-3 mt-2">
+                        <label class="form-label">About</label>
+                         <textarea cols="3" rows="2" class="form-control" name="about" placeholder="About" required></textarea>
+                    </div>
+
+                    <div>
+                        <input type="submit" value="Add Casting" class="btn btn-info w-100">
+                    </div>
+                </form>
+            </div>
+        <div class="col-md-4"></div>
+        </div>
+    </div>
+</div>

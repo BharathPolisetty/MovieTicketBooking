@@ -1,0 +1,108 @@
+{% if session['role'] =='Customer'%}
+{% include "chead.html" %}
+{% elif session['role'] == 'Theatre'%}
+{% include "thead.html" %}
+{% endif%}
+<style>
+    [type="checkbox"] {
+        display:None;
+    }
+    [type="checkbox"] +label {
+        display:inline-block;
+        background-color:#ccc;
+        width:100%;
+        height:50px;
+        text-align: center;
+        line-height:50px;
+        vertical-align:middle;
+    }
+      [type="checkbox"]:checked + label {
+        background-color: green;
+        color:white;
+        font-weight:bolder;
+    }
+   </style>
+<script>
+    let seatsBooks = 0;
+    function setcolor(id){
+        let isChecked = document.getElementById(id).checked
+        console.log(isChecked)
+        if(isChecked){
+            seatsBooks++
+            if(seatsBooks>6){
+                alert("You can not book more then 6 Tickets")
+                document.getElementById(id).checked = false
+            }else{
+                document.getElementById(id+"img").src = "../static/chair.png";
+            }
+        }else {
+            seatsBooks--
+            document.getElementById(id+"img").src = "../static/chair.png";
+        }
+    }
+</script>
+<div class="container">
+    <div class="col-md-12">
+  <form action="bookSeats" method="post">
+      <input type="hidden" name="booking_date" value="{{booking_date}}">
+      <input type="hidden" name="show_time" value="{{show_time}}">
+      <input type="hidden" name="screen_id" value="{{screen_id}}">
+      <input type="hidden" name="schedule_id" value="{{schedule_id}}">
+       {% set schedules =get_schedule_by_screen_id(screen[0]) %}
+  <div class="card m-2 p-2">
+    <div class="row">
+        <div class="col-md-2">
+            <div class="text-secondary h6">Price Per Seat :$ {{schedules[0][5]}}</div>
+        </div>
+         <div class="col-md-2">
+            <div class="text-secondary h6">Seats : {{screen[9]}}</div>
+        </div>
+         <div class="col-md-2">
+            <div class="text-secondary h6"><img src="../static/white.png" style="height:20px;width:50px;border-color:green;border:2px solid green"> : Available</div>
+        </div>
+         <div class="col-md-2">
+            <div class="text-secondary h6"><img src="../static/chair.png" style="height:20px;width:50px;border-color:green;border:2px solid green"> : Booked</div>
+        </div>
+        {% if session['role'] =='Customer'%}
+      <div class="col-md-3 text-end">
+        <input type="submit" value="Book Tickets" class="btn btn-success">
+      </div>
+        {% endif%}
+         {% if session['role'] =='Theatre'%}
+      <div class="col-md-3 text-end">
+          <a href="view_bookings?schedule_id={{schedule_id}}&show_time={{show_time}}&booking_date={{booking_date}}" class="btn btn-primary">View Bookings</a>
+      </div>
+        {% endif%}
+    </div>
+  </div>
+<div class="row ">
+  {% for i in range(1,int(screen[9])+1): %}
+    {% set isBooked = isSeatBooked(str(screen[0]),i,booking_date, show_time) %}
+    {% if isBooked:  %}
+        <div class="col-md-1">
+            <input  type="checkbox">
+            <div class="text-center " > {{i}}</div>
+            <label class="card m-2 text-center mycolor">
+                <div>
+                    <img src="../static/chair.png"  style="height:40px;width:80px;border-color:green;border:2px solid green">
+                </div>
+            </label>
+        </div>
+    {% else%}
+         <div class="col-md-1">
+            <input  type="checkbox" onclick="setcolor('{{screen[0]}}seat{{i}}')" class="mt-2" id="{{screen[0]}}seat{{i}}" name="{{screen[0]}}seat{{i}}"> <div class="text-center " > {{i}}</div>
+            <label class="card   m-2 text-center mycolor" for="{{screen[0]}}seat{{i}}" id="{{screen[0]}}label{{i}}">
+                <div>
+                    <img src="../static/white.png" id="{{screen[0]}}seat{{i}}img" style="height:40px;width:80px;border-color:green;border:2px solid green">
+                </div>
+            </label>
+        </div>
+    {% endif %}
+    {% endfor %}
+
+    <div class="text-center mt-1" style="border-color:red">All eyes this way please!</div>
+</div>
+  </form>
+    </div>
+</div>
+

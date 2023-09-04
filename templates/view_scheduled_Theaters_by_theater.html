@@ -1,0 +1,35 @@
+{% include "thead.html" %}
+<div class="container mt-3">
+  <div class="row">
+    {% for schedule in schedules%}
+    {% set screen  = get_screen_by_schedules(schedule['screen_id'])%}
+    {% set theatres = get_theater_by_schedule_screen(schedule['screen_id'])%}
+    {% for theatre in theatres%}
+    <div class="col-md-10 mt-2">
+      <div class="card">
+       <div class="card-header">
+         <div class=""><b>{{theatre['theatre_Name']}}</b> :  {{theatre['location']}},{{theatre['address']}}</div>
+         <div class="row">
+           <div class="col-md-3 h6 mt-1 p-2">
+              {{screen['screen_Title']}} , {{screen['screen_size']}}
+           </div>
+             <div class="col-md-2 card p-2 text-center text-success">
+               <a href="view_seats?screen_id={{screen['_id']}}&schedule_id={{schedule['_id']}}&booking_date={{booking_date}}&show_time={{screen['show1_timing']}}" class="nav-link">{{screen['show1_timing']}}</a>
+           </div>
+           <div class="col-md-2 card p-2 text-center text-success" style="margin-left:10px">
+              <a href="view_seats?screen_id={{screen['_id']}}&schedule_id={{schedule['_id']}}&booking_date={{booking_date}}&show_time={{screen['show2_timing']}}" class="nav-link">{{screen['show2_timing']}}</a>
+           </div>
+           <div class="col-md-2 card p-2 text-center text-success" style="margin-left:10px">
+              <a href="view_seats?screen_id={{screen['_id']}}&schedule_id={{schedule['_id']}}&booking_date={{booking_date}}&show_time={{screen['show3_timing']}}" class="nav-link">{{screen['show3_timing']}}</a>
+           </div>
+           <div class="col-md-2 card  p-2 text-center text-success" style="margin-left:10px">
+              <a href="view_seats?screen_id={{screen['_id']}}&schedule_id={{schedule['_id']}}&booking_date={{booking_date}}&show_time={{screen['show4_timing']}}" class="nav-link">{{screen['show4_timing']}}</a>
+           </div>
+         </div>
+       </div>
+      </div>
+    </div>
+    {% endfor%}
+    {% endfor%}
+  </div>
+</div>

@@ -1,0 +1,61 @@
+{% include "thead.html" %}
+<script>
+$(function(){
+    var dtToday = new Date();
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+        day = '0' + day.toString();
+    var minDate= year + '-' + month + '-' + day;
+    $('#booking_date').attr('min', minDate);
+}
+);
+</script>
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4 mt-4">
+        <form action="view_my_bookings">
+            <input type="date" id="booking_date" value="{{booking_date}}" onchange="this.form.submit()" name="booking_date" class="form-control p-2">
+        </form>
+    </div>
+</div>
+<div class="container mt-3">
+  <div class="row">
+        {% for screen in screens%}
+      {% set schedules = get_schedule_by_selected_date(screen[0])%}
+      {% for schedule in schedules%}
+    <div class="col-md-12 mt-2">
+      <div class="card">
+       <div class="card-header">
+         <div class=""></div>
+         <div class="row">
+           <div class="col-md-3 h6 mt-1 p-2">
+              {{screen[2]}} , {{screen[3]}}
+           </div>
+             <div class="col-md-2 card p-2 text-center text-success">
+               <a href="view_seats?screen_id={{screen[0]}}&show_time={{screen[5]}}&booking_date={{booking_date}}&schedule_id={{schedule[0]}}" class="nav-link">{{screen[5]}}</a>
+           </div>
+           <div class="col-md-2 card p-2 text-center text-success" style="margin-left:10px">
+               <a href="view_seats?screen_id={{screen[0]}}&show_time={{screen[6]}}&booking_date={{booking_date}}&schedule_id={{schedule[0]}}" class="nav-link">{{screen[6]}}</a>
+           </div>
+           <div class="col-md-2 card p-2 text-center text-success" style="margin-left:10px">
+              <a href="view_seats?screen_id={{screen[0]}}&show_time={{screen[7]}}&booking_date={{booking_date}}&schedule_id={{schedule[0]}}" class="nav-link">{{screen[7]}}</a>
+           </div>
+           <div class="col-md-2 card  p-2 text-center text-success" style="margin-left:10px">
+              <a href="view_seats?screen_id={{screen[0]}}&show_time={{screen[8]}}&booking_date={{booking_date}}&schedule_id={{schedule[0]}}" class="nav-link">{{screen[8]}}</a>
+           </div>
+         </div>
+       </div>
+      </div>
+    </div>
+      {% endfor%}
+    {% endfor%}
+
+
+  </div>
+</div>
+
+<div id="viewScreensWithDate"></div>

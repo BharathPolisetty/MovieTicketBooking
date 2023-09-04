@@ -1,0 +1,48 @@
+{% include "head.html" %}
+<style>
+body {
+  background-image: url("https://img.freepik.com/premium-vector/customers-buying-movie-tickets-online-booking-seats-cinema-theater-by-tiny-man-woman-flat-vector-illustration-digital-reservation-order-concept-banner-website-design-landing-web-page_179970-7301.jpg");
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+
+}
+</style>
+<script>
+ function validate(){
+        let email = document.getElementById("email").value
+        if(email==""){
+            alert("Enter Email")
+            return false;
+        }
+         let password = document.getElementById("password").value
+        if(password==""){
+            alert("Enter Password")
+            return false;
+        }
+
+        return true
+    }
+</script>
+<div class="row">
+	<div class="col-md-4"></div>
+	<div class="col-md-4 mt-5">
+		<div class="card bg-light text-dark p-3">
+			<div class="text-center h4">Customer Login</div>
+			<form action="customerLogin1" method="post"  onsubmit="return validate()">
+				<div class="form-floating mb-3 mt-3">
+					<input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+ 					<label for="email">Email</label>
+				</div>
+				<div class="form-floating mt-3 mb-3">
+  					<input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
+  					<label for="password">Password</label>
+				</div>
+				<div>
+					<input type="submit"  class="btn btn-success w-100" value="Login">
+				</div>
+			</form>
+			<a href="customerRegistration.html" class="link-primary">New Here? Click here to Register</a>
+		</div>
+	</div>
+	<div class="col-md-4"></div>
+</div>
