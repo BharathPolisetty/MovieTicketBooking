@@ -1,0 +1,38 @@
+{% include "thead.html" %}
+<div class="row ps-3">
+    {% for Schedule in Schedules: %}
+    {% set movie = get_movie_by_schedule2(Schedule[2])%}
+        <div class="col-md-4  mt-3">
+            <div class="card ps-3 p-3">
+                 <div class="row">
+                     <div class="col-md-6">
+                         {% set poster = retrieve_image_object_from_s3_bucket(movie[2]) %}
+                          <img src="{{poster}}" style="height:300px;width:100%;">
+                     </div>
+                     <div class="col-md-6">
+                         {% set poster = retrieve_image_object_from_s3_bucket(movie[3]) %}
+                           <div class="h4"><a href="{{poster}}" class="nav-link"> {{movie[1]}}</a>({{Schedule[6]}})</div>
+                          <div class="h5 mt-4">{{movie[5]}}</div>
+                         <div class="h6">{{movie[4]}}</div>
+                         <div class="text-secondary" style="font-size:10px">From Date</div>
+                          <div class="h6" style="font-size:14px">{{Schedule[3]}}</div>
+                         <div class="text-secondary" style="font-size:10px">To Date</div>
+                          <div class="h6" style="font-size:14px">{{Schedule[4]}}</div>
+                           <div class="text-secondary" style="font-size:10px">Price</div>
+                          <div class="h6" style="font-size:15px">$ {{Schedule[5]}}</div>
+
+                     </div>
+
+                 </div>
+                 <div class="card-body">
+                    <div>
+
+                     </div>
+
+                </div>
+            </div>
+        </div>
+    {% endfor%}
+
+</div>
+

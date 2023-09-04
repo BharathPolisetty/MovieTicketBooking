@@ -1,0 +1,48 @@
+{% include "theatreHome.html" %}
+<div class="container mt-5">
+    <div class="card p-3">
+        <div class="text-center h3">Add Screen</div>
+        <form action="addScreen1" method="post" >
+            <div class="row">
+                <div class="col-md-6">
+                 <div class="form-group">
+                     <label class="form-label">Screen Title</label>
+                     <input type="text" class="form-control" name="screen_Title" placeholder="Enter Screen Title" required>
+                </div>
+                  <div class="form-group mt-2">
+                    <label class="number_of_seats">Number Of Seats</label>
+                    <input type="number" class="form-control mt-1" name="number_of_seats" id="number_of_seats" placeholder="Number of Seats" required>
+                </div>
+                      <div class="form-group mt-1">
+                         <label class="form-label">Screen Type</label>
+                         <input type="text" class="form-control mt-1" name="screen_Type" placeholder="Screen Type" required>
+                     </div>
+                      <div class="form-group mt-1">
+                        <label class="form-label">Screen Size</label>
+                        <input type="text" class="form-control mt-1" name="screen_size" placeholder="Screen Size" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                     <div class="form-group m   ">
+                       <label class="form-label">Show1 Timing</label>
+                        <input type="time" class="form-control" name="show1_timing" required>
+                    </div>
+
+                      <div class="form-group mt-1">
+					   <label class="form-label">Show2 Timing</label>
+                          <input type="time" class="form-control" name="show2_timing" required>
+                      </div>
+                    <div class="form-group mt-1">
+					    <label class="form-label">Show3 Timing</label>
+                        <input type="time" class="form-control" name="show3_timing" required>
+                    </div>
+                     <div class="form-group mt-1">
+					     <label class="form-label">Show4 Timing</label>
+                        <input type="time" class="form-control mt-1" name="show4_timing" required>
+                    </div>
+                </div>
+                 <input type="submit" value="Add Screen" class="btn btn-primary w-100 mt-4">
+            </div>
+        </form>
+    </div>
+</div>

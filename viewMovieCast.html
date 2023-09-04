@@ -1,0 +1,17 @@
+{% include "adminHome.html" %}
+<div class="container">
+    <div class="row">
+          {% for cast in casting: %}
+         <div class="col-md-3 mt-5">
+             <div class="card p-4">
+                 <img src="../static/moviePosters/{{cast[6]}}"  style="height:100px; max-width:100%;">
+                 <div>{{cast[3]}} </div>
+                 <div>({{cast[2]}})</div>
+                 <div class="text-secondary" style="font-size:10px">About</div>
+                  <div class="h6" style="font-size:10px;overflow:auto:height:20px">{{cast[5]}}</div>
+             </div>
+             </div>
+
+            {% endfor%}
+    </div>
+</div>

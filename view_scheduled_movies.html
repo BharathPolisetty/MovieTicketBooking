@@ -1,0 +1,52 @@
+{% include "chead.html" %}
+<script>
+$(document).ready(function(){
+    getMovies()
+    $("#movie_Name").on("keyup",function(){
+        getMovies()
+    })
+    $("#booking_date").on("change",function(){
+        getMovies()
+    })
+});
+
+function getMovies(){
+   let movie_Name = $("#movie_Name").val()
+   let booking_date = $("#booking_date").val()
+   $.get("get_scheduled_movies?movie_Name="+movie_Name+"&booking_date="+booking_date, function(data, status){
+        $("#movies").html(data)
+    });
+}
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+$(function(){
+    var dtToday = new Date();
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+        day = '0' + day.toString();
+    var minDate= year + '-' + month + '-' + day;
+    $('#booking_date').attr('min', minDate);
+}
+);
+</script>
+
+<div class="container">
+    <form action="view_scheduled_movies">
+        <div class="row">
+            <div class="col-md-8  mt-4">
+                <input type="search" id="movie_Name" name="movie_Name" value="{{movie_Name}}" class="form-control p-2" placeholder="Search Movies"  autofocus >
+            </div>
+            <div class="col-md-4 mt-4">
+              <input type="date" id="booking_date" value="{{today}}" name="booking_date" class="form-control p-2" autofocus>
+            </div>
+
+        </div>
+    </form>
+</div>
+<div id="movies"></div>

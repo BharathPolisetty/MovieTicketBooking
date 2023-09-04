@@ -1,0 +1,24 @@
+{% include "adminHome.html" %}
+<div class="container-fluid">
+    <table class="table table-bordered mt-5">
+        <thead class="table-success">
+            <tr>
+                <td>Theatre Name</td>
+                <td>Email</td>
+                <td>Phone</td>
+                <td>Location</td>
+                <td>Address</td>
+
+            </tr>
+            </thead>
+            {% for theatre in theatres: %}
+            <tr class="bordered">
+                <td>{{theatre[1]}}</td>
+                <td>{{theatre[2]}}</td>
+                <td>{{theatre[3]}}</td>
+                <td>{{theatre[4]}}</td>
+                <td>{{theatre[5]}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>

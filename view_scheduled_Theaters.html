@@ -1,0 +1,50 @@
+{% include "chead.html" %}
+<div class="container mt-3">
+  <div class="row">
+    {% for schedule in schedules%}
+    {% set screen  = get_screen_by_schedules(schedule[1])%}
+    {% set theatres = get_theater_by_schedule_screen(schedule[1])%}
+    {% for theatre in theatres%}
+    <div class="col-md-12 mt-2">
+      <div class="card">
+       <div class="card-header">
+         <div class=""><b>{{theatre[1]}}</b> :  {{theatre[4]}},{{theatre[5]}}</div>
+         <div class="row mt-3">
+           <div class="col-md-3 h6 mt-1 p-2">
+              {{screen[2]}} , {{screen[3]}}
+           </div>
+             {% set can_display = can_display_show(booking_date,screen[5]) %}
+             {% if can_display: %}
+               <div class="col-md-2 card p-2 text-center text-success">
+                   <a href="view_seats?screen_id={{screen[0]}}&schedule_id={{schedule[0]}}&booking_date={{booking_date}}&show_time={{screen[5]}}" class="nav-link">{{screen[5]}}</a>
+               </div>
+             {% endif %}
+
+             {% set can_display = can_display_show(booking_date,screen[6]) %}
+             {% if can_display: %}
+               <div class="col-md-2 card p-2 text-center text-success" style="margin-left:10px">
+                  <a href="view_seats?screen_id={{screen[0]}}&schedule_id={{schedule[0]}}&booking_date={{booking_date}}&show_time={{screen[6]}}" class="nav-link">{{screen[6]}}</a>
+               </div>
+             {% endif %}
+
+             {% set can_display = can_display_show(booking_date,screen[7]) %}
+             {% if can_display: %}
+               <div class="col-md-2 card p-2 text-center text-success" style="margin-left:10px">
+                  <a href="view_seats?screen_id={{screen[0]}}&schedule_id={{schedule[0]}}&booking_date={{booking_date}}&show_time={{screen[7]}}" class="nav-link">{{screen[7]}}</a>
+               </div>
+             {% endif %}
+
+             {% set can_display = can_display_show(booking_date,screen[8]) %}
+             {% if can_display: %}
+               <div class="col-md-2 card  p-2 text-center text-success" style="margin-left:10px">
+                  <a href="view_seats?screen_id={{screen[0]}}&schedule_id={{schedule[0]}}&booking_date={{booking_date}}&show_time={{screen[8]}}" class="nav-link">{{screen[8]}}</a>
+               </div>
+             {% endif %}
+         </div>
+       </div>
+      </div>
+    </div>
+    {% endfor%}
+    {% endfor%}
+  </div>
+</div>

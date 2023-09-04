@@ -1,0 +1,45 @@
+{% include "thead.html" %}
+
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <div class="card bg-secondary text-white mt-4 p-3">
+            <div class="text-center h4">Assign Movie</div>
+            <hr>
+            <form action="addSchedule" method="post">
+                <input type="hidden" name="screen_id" value="{{screen_id}}">
+                  <div class="mb-3 mt-2">
+                      <label class="form-label">From Date Time</label>
+                      <input type="datetime-local" name="from_date_time" id="from_date_time" class="form-control" required>
+                  </div>
+                  <div class="mb-3 mt-3">
+                      <label class="form-label">To Date Time</label>
+                      <input type="datetime-local" name="to_date_time" id="to_date_time" class="form-control" required>
+                  </div>
+                  <div class="mb-3 mt-3">
+                    <label class="form-label">Movie</label>
+                    <select class="form-select" name="movie_id">
+                      <option value="">Choose Movie</option>
+                        {% for movie in movies: %}
+                            <option value="{{movie[0]}}">{{movie[1]}}</option>
+                        {% endfor %}
+                    </select>
+                  </div>
+                  <div class="mb-3 mt-3">
+                      <label class="form-label">Price Per Seat</label>
+                      <input type="number" class="form-control" name="price_per_seat" placeholder="Enter Price">
+                  </div>
+                  <div class="mb-3 mt-3">
+                      <label class="form-label">Movie Type</label>
+                      <input type="text" class="form-control" name="movie_Type" placeholder="Enter Movie Type">
+                  </div>
+                  <div>
+                    <input type="submit"  class="btn btn-info w-100" value="Assign">
+                  </div>
+              </form>
+        </div>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+</div>

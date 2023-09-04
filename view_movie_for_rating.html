@@ -1,0 +1,30 @@
+{% include "chead.html" %}
+<div class="row ps-3">
+        <div class="col-md-4  mt-3">
+            <div class="card ps-3 p-3">
+                 <div class="row">
+                     <div class="col-md-6">
+                          <img src="../static/moviePosters/{{movie['poster']}}" style="height:300px;width:100%;">
+                     </div>
+                     <div class="col-md-6">
+                           <div class="h4"><a href="static/certificates/{{movie['certificate']}}" class="nav-link"> {{movie["movie_Name"]}}</a></div>
+                          <div class="h5 mt-4">{{movie["supported_formats"]}}</div>
+                         <div class="h6">{{movie["certificate_type"]}}</div>
+                         {% set rating = get_movie_reviews(movie['_id'])%}
+                         <div class="mb-3 mt-1">Ratings</div>
+                         <div class="h5 text-center">{{rating}}</div>
+                         <div class="card p-1"><a href="review_for_movie?movie_id={{movie['_id']}}" class=" btn btn-primary">
+                              Rate Now
+                         </a></div>
+                     </div>
+
+                 </div>
+                 <div class="card-body">
+                    <div>
+
+                     </div>
+
+                </div>
+            </div>
+        </div>
+</div>

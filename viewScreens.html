@@ -1,0 +1,54 @@
+{% include "thead.html" %}
+<div class="container-fluid">
+    <div class="h5 text-center mt-2 ">Available Screens</div>
+    <div class="row">
+         {% for screen in screens: %}
+        <div class="col-md-3">
+            <div class="card bg-light mt-3 p-3">
+                <div class="text-center h6">{{screen[2]}}</div>
+                <div class="ms-2 ps-1">
+                    <div class="text-muted" style="font-size:10px">Capacity</div>
+                    <div class="">{{screen[9]}}</div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6 ps-4">
+                        <div>{{screen[4]}}</div>
+                    </div>
+                    <div class="col-md-6 pe-3">
+                        <div>Size : {{screen[3]}}</div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6 ps-4">
+                        <div>{{screen[5]}}</div>
+                    </div>
+                    <div class="col-md-6 ps-4">
+                        <div>{{screen[6]}}</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 ps-4">
+                        <div>{{screen[7]}}</div>
+                    </div>
+                    <div class="col-md-6 ps-4">
+                        <div>{{screen[8]}}</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div>
+                            <a href="assignMovie?screen_id={{screen[0]}}" class="btn btn-primary w-100 mt-3">Assign Movie</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div>
+                            <a href="viewSchedule?screen_id={{screen[0]}}" class="btn btn-primary w-100 mt-3">View Assigned</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+         {% endfor %}
+    </div>
+</div>

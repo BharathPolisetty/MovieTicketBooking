@@ -1,0 +1,15 @@
+{% include 'chead.html'%}
+<div class="container">
+     <div class="row">
+    {% for movie in movies: %}
+        <div class="col-md-3  mt-5">
+            <div class="card  p-1">
+                {% set poster = retrieve_image_object_from_s3_bucket(movie[2]) %}
+                <div class="text-center card-header h6"><a href="view_movie_for_rating?movie_id={{movie[0]}}" class="nav-link">{{movie[1]}}</a></div>
+                <a href="view_scheduled_Theaters?movie_id={{movie[0]}}&booking_date={{booking_date}}&theatre_id={{theatre_id}}" class="nav-link"><img src="{{poster}}" style="height:300px;width:100%;" class="mt-1"></a>
+            </div>
+        </div>
+    {% endfor %}
+     </div>
+</div>
+
